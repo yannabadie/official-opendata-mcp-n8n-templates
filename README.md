@@ -1,6 +1,6 @@
-# Official Open-Data MCP & n8n Templates (SIRENE, TED Europa, BOAMP, ClinicalTrials.gov)
+# Official Open-Data MCP & n8n Templates (SIRENE, TED Europa, BOAMP, ClinicalTrials, US NPI, PubMed)
 
-Ready-to-import **n8n workflow templates**, **Claude / Cursor / Antigravity MCP config (`mcp.json`)**, and a **zero-dependency Python CLI** for querying official European and U.S. government open-data registries with **zero proxies, zero CAPTCHAs, and deterministic JSON schemas**.
+Ready-to-import **n8n workflow templates**, **Claude / Cursor / Antigravity MCP config (`mcp.json`)**, and a **zero-dependency Python CLI** for querying **5 official European and U.S. government & biomedical open-data registries** with **zero proxies, zero CAPTCHAs, and deterministic JSON schemas**.
 
 ---
 
@@ -12,6 +12,7 @@ Ready-to-import **n8n workflow templates**, **Claude / Cursor / Antigravity MCP 
 | **EU & France Public Tenders** | EU TED Search API v3 (27 countries) + French BOAMP | Direct **buyer email, phone & website**, award winners (`can-standard`), `minValueEur`, `deadlineAfter` & raw TED Expert Query (`$3–$4 / 1,000`) | [`yannabadie/eu-public-tenders-ted-boamp`](https://apify.com/yannabadie/eu-public-tenders-ted-boamp) |
 | **Global Clinical Trials** | U.S. NIH ClinicalTrials.gov REST API v2 (500k+ studies) | **FREE `count` mode**, paste ClinicalTrials.gov URLs or NCT IDs, central & site contact emails/phones, phases, sponsors & `updatedSince` watch (`$5 / 1,000`) | [`yannabadie/clinical-trials-api-mcp`](https://apify.com/yannabadie/clinical-trials-api-mcp) |
 | **U.S. Doctors & Clinics (NPI)** | U.S. CMS NPPES NPI Registry API v2.1 (8M+ providers) | **Flat `$2.50 / 1,000` all-inclusive** (zero phone surcharge), FREE `count` mode, practice phones/fax, licenses & Authorized Official decision-makers | [`yannabadie/npi-healthcare-providers-mcp`](https://apify.com/yannabadie/npi-healthcare-providers-mcp) |
+| **PubMed & Europe PMC Papers** | EMBL-EBI Europe PMC & PubMed REST API (37M+ papers) | **100% untruncated abstracts**, author emails, ORCIDs, citations, MeSH, NIH/EU grants, linked NCT trials & **free PDF URLs** (`$2 / 1,000`, FREE `count` mode) | [`yannabadie/pubmed-europepmc-api-mcp`](https://apify.com/yannabadie/pubmed-europepmc-api-mcp) |
 
 > Prefer a **zero-API-key local stdio MCP server** for quick interactive lookups in Claude/Cursor? See [`yannabadie/eu-us-opendata-mcp`](https://github.com/yannabadie/eu-us-opendata-mcp).
 
@@ -29,6 +30,8 @@ Ready-to-import **n8n workflow templates**, **Claude / Cursor / Antigravity MCP 
    - Daily 08:00 trigger -> watches updated Phase 2/3 industry clinical trials -> upserts NCT studies + contact emails into Google Sheets + sends Slack pipeline alerts.
 4. **[`workflows/n8n_us_npi_healthcare_leads_sheets.json`](workflows/n8n_us_npi_healthcare_leads_sheets.json)**
    - Queries U.S. CMS NPI Registry API v2.1 (`NPI-2` clinics & group practices with phone only) -> upserts phones, fax, and Authorized Official contacts into Google Sheets.
+5. **[`workflows/n8n_pubmed_kol_literature_watch.json`](workflows/n8n_pubmed_kol_literature_watch.json)**
+   - Weekly Monday 08:00 trigger -> queries PubMed & Europe PMC (`onlyWithEmail: true`, `hasFreePdf: true`) -> upserts papers, author emails, linked NCT trials & free PDF links into Google Sheets + Slack alerts.
 
 ### Import into n8n (60 seconds)
 1. Download any `.json` file from `workflows/` and click **Import from File** in n8n.
@@ -45,7 +48,7 @@ Drop [`mcp/mcp.json`](mcp/mcp.json) into your MCP client configuration (set `API
 {
   "mcpServers": {
     "apify-official-opendata": {
-      "url": "https://mcp.apify.com/?actors=yannabadie/french-company-intelligence-mcp,yannabadie/eu-public-tenders-ted-boamp,yannabadie/clinical-trials-api-mcp",
+      "url": "https://mcp.apify.com/?actors=yannabadie/french-company-intelligence-mcp,yannabadie/eu-public-tenders-ted-boamp,yannabadie/clinical-trials-api-mcp,yannabadie/npi-healthcare-providers-mcp,yannabadie/pubmed-europepmc-api-mcp",
       "headers": {
         "Authorization": "Bearer ${APIFY_TOKEN}"
       }
