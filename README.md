@@ -11,6 +11,9 @@ Ready-to-import **n8n workflow templates**, **Claude / Cursor / Antigravity MCP 
 | **French Companies & KYC** | DINUM/INSEE/INPI SIRENE/RNE + DILA BODACC + BOAMP | **FREE `count` mode**, GPS radius search (`/near_point`), RGE/Qualiopi/Bio/ESS filters, EU VAT, financials, executives & opt-in insolvency KYC (`$6 / 1,000`) | [`yannabadie/french-company-intelligence-mcp`](https://apify.com/yannabadie/french-company-intelligence-mcp) |
 | **EU & France Public Tenders** | EU TED Search API v3 (27 countries) + French BOAMP | Direct **buyer email, phone & website**, award winners (`can-standard`), `minValueEur`, `deadlineAfter` & raw TED Expert Query (`$3–$4 / 1,000`) | [`yannabadie/eu-public-tenders-ted-boamp`](https://apify.com/yannabadie/eu-public-tenders-ted-boamp) |
 | **Global Clinical Trials** | U.S. NIH ClinicalTrials.gov REST API v2 (500k+ studies) | **FREE `count` mode**, paste ClinicalTrials.gov URLs or NCT IDs, central & site contact emails/phones, phases, sponsors & `updatedSince` watch (`$5 / 1,000`) | [`yannabadie/clinical-trials-api-mcp`](https://apify.com/yannabadie/clinical-trials-api-mcp) |
+| **U.S. Doctors & Clinics (NPI)** | U.S. CMS NPPES NPI Registry API v2.1 (8M+ providers) | **Flat `$2.50 / 1,000` all-inclusive** (zero phone surcharge), FREE `count` mode, practice phones/fax, licenses & Authorized Official decision-makers | [`yannabadie/npi-healthcare-providers-mcp`](https://apify.com/yannabadie/npi-healthcare-providers-mcp) |
+
+> Prefer a **zero-API-key local stdio MCP server** for quick interactive lookups in Claude/Cursor? See [`yannabadie/eu-us-opendata-mcp`](https://github.com/yannabadie/eu-us-opendata-mcp).
 
 *Free Apify accounts include `$5/month` of usage credits — enough to run ~800–1,600 records/month for free.*
 
@@ -24,6 +27,8 @@ Ready-to-import **n8n workflow templates**, **Claude / Cursor / Antigravity MCP 
    - Webhook taking a SIREN list -> enriches SIRENE/RNE + EU VAT + BODACC insolvency notices -> automatically routes `high_risk` / `closed` entities to a Slack compliance channel.
 3. **[`workflows/n8n_clinical_trials_sponsor_watch.json`](workflows/n8n_clinical_trials_sponsor_watch.json)**
    - Daily 08:00 trigger -> watches updated Phase 2/3 industry clinical trials -> upserts NCT studies + contact emails into Google Sheets + sends Slack pipeline alerts.
+4. **[`workflows/n8n_us_npi_healthcare_leads_sheets.json`](workflows/n8n_us_npi_healthcare_leads_sheets.json)**
+   - Queries U.S. CMS NPI Registry API v2.1 (`NPI-2` clinics & group practices with phone only) -> upserts phones, fax, and Authorized Official contacts into Google Sheets.
 
 ### Import into n8n (60 seconds)
 1. Download any `.json` file from `workflows/` and click **Import from File** in n8n.
