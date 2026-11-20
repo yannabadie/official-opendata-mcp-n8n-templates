@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "apify-official-opendata": {
-      "url": "https://mcp.apify.com/?actors=yannabadie/french-company-intelligence-mcp,yannabadie/eu-public-tenders-ted-boamp,yannabadie/clinical-trials-api-mcp,yannabadie/npi-healthcare-providers-mcp,yannabadie/pubmed-europepmc-api-mcp",
+      "url": "https://mcp.apify.com/?actors=yannabadie/french-company-intelligence-mcp,yannabadie/eu-public-tenders-ted-boamp,yannabadie/clinical-trials-api-mcp,yannabadie/npi-healthcare-providers-mcp,yannabadie/pubmed-europepmc-api-mcp,yannabadie/multi-ats-jobs-api-mcp,yannabadie/substack-api-mcp,yannabadie/website-contact-tech-enricher-mcp,yannabadie/google-news-gdelt-api-mcp",
       "headers": {
         "Authorization": "Bearer ${APIFY_TOKEN}"
       }
