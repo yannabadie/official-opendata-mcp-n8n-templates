@@ -19,7 +19,7 @@ Ready-to-import, **n8n Creator-ready workflow templates** (each with canvas stic
 | **Google News & GDELT Sentiment** | Google News RSS (multi-country) + GDELT Project v2 DOC & `ToneChart` APIs | Deduplicated headlines, canonical URLs, article images, **media sentiment tone scores** & FREE `count` (`$2 / 1,000`) | [`yannabadie/google-news-gdelt-api-mcp`](https://apify.com/yannabadie/google-news-gdelt-api-mcp?fpr=zuvzfw) |
 
 > Prefer a **zero-API-key local stdio MCP server** (live in the Official MCP Registry `io.github.yannabadie/eu-us-opendata-mcp`)? See [`yannabadie/eu-us-opendata-mcp`](https://github.com/yannabadie/eu-us-opendata-mcp).
-> Need a **hosted REST API** with instant key auth and edge caching? Use [**EU & US Official Open-Data Intelligence on RapidAPI**](https://rapidapi.com/YannAbadie/api/eu-us-official-open-data-intelligence1) (free `100 req/mo` Basic tier + Pro/Ultra/Mega plans).
+> Prefer **direct hosted REST APIs** with instant API key auth and edge caching? See all **15 live APIs on RapidAPI Hub** below (free Basic tiers + Pro/Ultra/Mega plans).
 
 *[Free Apify accounts](https://apify.com/?fpr=zuvzfw) include `$5/month` of usage credits — enough to run ~800–3,000 records/month for free.*
 
@@ -86,6 +86,36 @@ python3 examples/quickstart_cli.py clinical-trials --condition diabetes --phases
 # Extract live EU + French IT procurement tenders with buyer contacts
 python3 examples/quickstart_cli.py eu-tenders --countries FRA,DEU --cpv 72 --max 10
 ```
+
+---
+
+## 4. 15 Live Hosted REST APIs on RapidAPI Hub (Direct HTTP Nodes in n8n)
+
+Drop any of these 15 edge-cached Cloudflare Workers REST APIs straight into an n8n `HTTP Request` node (free Basic tiers + Pro/Ultra/Mega plans):
+
+- **Official EU & US Open-Data (6 APIs):**
+  - [EU & US Official Open-Data Intelligence (5-in-1)](https://rapidapi.com/YannAbadie/api/eu-us-official-open-data-intelligence1) · [French SIRENE Company & EU VAT](https://rapidapi.com/YannAbadie/api/french-sirene-company-and-eu-vat-api) · [EU TED Public Tenders Procurement](https://rapidapi.com/YannAbadie/api/eu-ted-public-tenders-procurement-api) · [NIH ClinicalTrials v2 Studies](https://rapidapi.com/YannAbadie/api/nih-clinicaltrials-v2-studies-api) · [US NPI Healthcare Providers Registry](https://rapidapi.com/YannAbadie/api/us-npi-healthcare-providers-registry-api) · [PubMed & Europe PMC Literature](https://rapidapi.com/YannAbadie/api/pubmed-and-europe-pmc-literature-api)
+- **B2B KYB, Hiring & Financials (4 APIs):**
+  - [Website Contact & Tech Stack Enricher](https://rapidapi.com/YannAbadie/api/website-contact-and-tech-stack-enricher) · [Multi-ATS Jobs Board](https://rapidapi.com/YannAbadie/api/multi-ats-jobs-board-api) · [EU KYB VAT VIES & GLEIF LEI](https://rapidapi.com/YannAbadie/api/eu-kyb-vat-vies-and-gleif-lei) · [SEC EDGAR Filings & Financials](https://rapidapi.com/YannAbadie/api/sec-edgar-filings-and-financials)
+- **EU Public Intelligence, RegTech & Energy (5 New APIs):**
+  - [ADEME DPE France Energy Ratings](https://rapidapi.com/YannAbadie/api/ademe-dpe-france-energy-ratings-api) · [French BODACC Legal Notices](https://rapidapi.com/YannAbadie/api/french-bodacc-legal-notices-api) · [EU CRA Open Source Security Audit](https://rapidapi.com/YannAbadie/api/eu-cra-open-source-security-audit-api) · [US OpenFDA Drugs, Devices & Recalls](https://rapidapi.com/YannAbadie/api/us-openfda-drugs-devices-recalls-api) · [EU Macro FX & French Grid Energy (RTE Éco2mix)](https://rapidapi.com/YannAbadie/api/eu-macro-fx-and-french-grid-energy-api)
+
+---
+
+## 5. 5 Live GitHub Marketplace EU RegTech Actions & 3 Free Open-Data Portals
+
+### GitHub Marketplace Actions (MIT, Zero External Dependencies)
+- **[Factur-X France 2026–2027 Validator (EN 16931 / PDF/A-3)](https://github.com/marketplace/actions/factur-x-france-2026-2027-validator-en-16931-pdf-a-3)** · [Browser Checker](https://yannabadie.github.io/facturkit-2027/audit-facture-gratuit.html)
+- **[CRA-SBOM-Guard — EU Cyber Resilience Act Art. 14 & CycloneDX 1.5](https://github.com/marketplace/actions/cra-sbom-guard-eu-cyber-resilience-act-art-14-scanner)** · [Live Scanner](https://yannabadie.github.io/cra-sbom-guard/)
+- **[AccessiKit — EAA & RGAA v5 Accessibility Auditor](https://github.com/marketplace/actions/accessikit-eaa-rgaa-v5-accessibility-auditor)** · [Live Scanner](https://yannabadie.github.io/accessikit-eaa-rgaa/)
+- **[AIActKit — EU AI Act Art. 50 Transparency Guard (Omnibus 2026/1744)](https://github.com/marketplace/actions/aiactkit-eu-ai-act-art-50-transparency-guard)** · [Live Scanner](https://yannabadie.github.io/ai-act-art50-guard/)
+- **[BatteryDPP-Check — EU Battery Passport 2023/1542 Validator](https://github.com/marketplace/actions/batterydpp-check-eu-battery-passport-2023-1542-validator)** · [Live Scanner](https://yannabadie.github.io/battery-dpp-check/)
+
+### Free Interactive Open-Data Portals (210 Programmatic Pages) & Compliance Packs
+- **[FacturKit 2027 — 50 French Professions (NAF), 159 PA Comparator & URSSAF 2026 Simulator](https://yannabadie.github.io/facturkit-2027/)**
+- **[Observatoire ADEME DPE & Artisans RGE — 100 French Cities](https://yannabadie.github.io/observatoire-dpe-rge-france/)**
+- **[EU Public Tenders & Open-Data Explorer — 60 EU Country × CPV Markets](https://yannabadie.github.io/eu-tenders-opendata-explorer/)**
+- **Instant-Download Field Guides & Notion Command Centers (Gumroad EU VAT MoR):** [EU Compliance Guide 43 p. (`24 €`)](https://yannabadi.gumroad.com/l/eu-compliance-2026-2027-guide) · [EU Digital Compliance Command Center Notion (`29 €`)](https://yannabadi.gumroad.com/l/eu-compliance-2026-2027-notion-pack) · [Factur-X Workbook 46 p. (`19 €`)](https://yannabadi.gumroad.com/l/facturx-2026-2027-cahier-pratique) · [Freelance & EI France Notion Cockpit (`19 €`)](https://yannabadi.gumroad.com/l/freelance-ei-france-2026-notion-cockpit) · [AI Agent Engineering Skills Bundle (`29 €`)](https://yannabadi.gumroad.com/l/ai-agent-skills-bundle)
 
 ---
 
