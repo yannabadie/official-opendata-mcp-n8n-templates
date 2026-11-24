@@ -118,7 +118,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1020,
+        1260,
         220
       ]
     },
@@ -135,7 +135,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1020,
+        1260,
         400
       ]
     },
@@ -170,6 +170,29 @@
         740,
         40
       ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "observed-at",
+              "name": "observedAt",
+              "value": "={{$now.toISO()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true
+      },
+      "id": "set-observed-at",
+      "name": "Stamp Observation Time",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        980,
+        300
+      ]
     }
   ],
   "connections": {
@@ -196,6 +219,17 @@
       ]
     },
     "Keep Valid Tenders": {
+      "main": [
+        [
+          {
+            "node": "Stamp Observation Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stamp Observation Time": {
       "main": [
         [
           {

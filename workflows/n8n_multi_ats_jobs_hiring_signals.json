@@ -37,7 +37,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "{\n  \"mode\": \"search\",\n  \"keywords\": [\"engineer\", \"data\", \"ai\"],\n  \"postedWithinDays\": 7,\n  \"includeDescription\": false,\n  \"maxResults\": 50\n}",
+        "jsonBody": "{\n  \"mode\": \"search\",\n  \"keywords\": [\n    \"engineer\",\n    \"data\",\n    \"ai\"\n  ],\n  \"postedWithinDays\": 7,\n  \"includeDescription\": false,\n  \"maxResults\": 5,\n  \"careerUrls\": [\n    \"https://boards.greenhouse.io/stripe\",\n    \"https://jobs.ashbyhq.com/linear\",\n    \"https://boards.greenhouse.io/cloudflare\"\n  ]\n}",
         "options": {
           "timeout": 60000
         }
@@ -161,9 +161,9 @@
     },
     {
       "parameters": {
-        "content": "## Multi-ATS B2B Hiring Signals (7 ATS Engines)\n1. Set n8n env vars `APIFY_TOKEN` (free Apify account includes $5/mo credits) and `SLACK_WEBHOOK_URL`.\n2. Optionally pass target `careerUrls` or `boards` (`greenhouse`, `lever`, `ashby`, `smartrecruiters`, `workable`, `recruitee`, `workday`) in **Fetch Multi-ATS Career Jobs**.\n3. Replace `REPLACE_WITH_GOOGLE_SHEET_ID` and click **Test Workflow**.",
-        "height": 200,
-        "width": 540,
+        "content": "## Multi-ATS B2B Hiring Signals (7 ATS Engines)\n1. Set n8n env vars `APIFY_TOKEN` (free Apify account includes $5/mo credits) and `SLACK_WEBHOOK_URL`.\n2. Optionally pass target `careerUrls` or `boards` (`greenhouse`, `lever`, `ashby`, `smartrecruiters`, `workable`, `recruitee`, `workday`) in **Fetch Multi-ATS Career Jobs**.\n3. Replace `REPLACE_WITH_GOOGLE_SHEET_ID` and click **Test Workflow**.\n\nActor documentation: https://apify.com/yannabadie/multi-ats-jobs-api-mcp\nPreview with `mode: count` or `detect_boards`: $0 per job, plus $0.005 start. Inspect the HTTP output directly: preview rows do not pass the job filter. Restore `search` for export.\nOpen-source MCP companion: https://github.com/yannabadie/eu-us-opendata-mcp",
+        "height": 360,
+        "width": 570,
         "color": 5
       },
       "id": "sticky-ats-setup",
@@ -177,9 +177,9 @@
     },
     {
       "parameters": {
-        "content": "### Idempotent Hiring Feed\n- **Keep Valid Job Records** drops summary rows.\n- **Format B2B Hiring Signal** builds a clean Slack headline (`signalLabel`).\n- **Upsert Jobs into Google Sheets** matches on `recordKey` to avoid duplicates across daily runs.",
-        "height": 175,
-        "width": 520,
+        "content": "### Downstream Hiring Signals\n- **Keep Valid Job Records** removes preview and malformed rows.\n- **Format B2B Hiring Signal** sets `signalLabel` for downstream display.\n- **Upsert Jobs into Google Sheets** matches on `recordKey`, avoiding duplicate spreadsheet rows across runs.\n- The Slack branch posts matched rows on each execution; it needs a persisted seen-key filter if alerts should be limited to previously unseen roles.",
+        "height": 260,
+        "width": 570,
         "color": 4
       },
       "id": "sticky-ats-output",

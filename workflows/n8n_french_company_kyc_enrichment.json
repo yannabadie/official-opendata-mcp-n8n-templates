@@ -114,9 +114,9 @@
     },
     {
       "parameters": {
-        "content": "## French Company KYC (SIRENE + BODACC)\n1. Set n8n env vars `APIFY_TOKEN` and `SLACK_WEBHOOK_URL` (zero hardcoded secrets).\n2. Test via `POST /webhook-test/french-company-kyc` with body `{\"sirens\": [\"794598813\"]}`.\n3. Returns SIRENE/RNE data, computed EU VAT, and BODACC insolvency flags.",
-        "height": 185,
-        "width": 520,
+        "content": "## French Company KYC (SIRENE + BODACC)\n1. Set n8n env vars `APIFY_TOKEN` and `SLACK_WEBHOOK_URL` (zero hardcoded secrets).\n2. Test via `POST /webhook-test/french-company-kyc` with body `{\"sirens\": [\"794598813\"]}`.\n3. Returns SIRENE/RNE data, computed EU VAT, and BODACC insolvency flags.\n\nActor documentation: https://apify.com/yannabadie/french-company-intelligence-mcp\nFor a volume preview, test the HTTP node alone with `{\"mode\":\"count\",\"query\":\"mistral\",\"maxResults\":5}`: $0 per company plus $0.005 start. Do not route the summary to the KYC decision branch. Computed VAT is not registration verification; review risk signals before approval.\nOpen-source MCP: https://github.com/yannabadie/eu-us-opendata-mcp",
+        "height": 400,
+        "width": 590,
         "color": 5
       },
       "id": "sticky-setup",
@@ -130,9 +130,9 @@
     },
     {
       "parameters": {
-        "content": "### Automated Risk Split\n- **Risk Signal Check** routes any company where `health_signal != active_clean` (`high_risk` / `closed`) to **Send Compliance Risk Alert**.\n- Clean active entities are stamped `APPROVED_ACTIVE_CLEAN` and returned to the webhook caller.",
-        "height": 165,
-        "width": 480,
+        "content": "### Downstream Risk Routing\n- **Risk Signal Check** tests `health_signal != \"active_clean\"`: its true branch goes to **Send Compliance Risk Alert** for review.\n- On the false branch (`health_signal == \"active_clean\"`), the downstream **Mark Active Clean** Set node writes a separate field: `kyc_status: APPROVED_ACTIVE_CLEAN`.\n- `kyc_status` is an internal routing label derived from `health_signal`; it is not a complete regulatory KYC validation. Review company identity and legal-event context before approval.",
+        "height": 260,
+        "width": 590,
         "color": 4
       },
       "id": "sticky-routing",
